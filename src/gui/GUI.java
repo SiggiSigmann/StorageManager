@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,17 +37,37 @@ public class GUI extends JFrame{
 		
 		bBackup = new JButton();
 		bBackup.setText("Sync");
-		bBackup.setMaximumSize(new Dimension(50,100));
+		bBackup.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switchToBackup();
+			}
+		});
 		gbc.gridy = 0;
 		add(bBackup,gbc);
 		
 		bSort = new JButton();
 		bSort.setText("Sort");
+		bSort.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switchToSort();
+			}
+		});
 		gbc.gridy = 1;
 		add(bSort,gbc);
 		
 		bCheck = new JButton();
 		bCheck.setText("Check");
+		bCheck.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switchToCheck();
+			}
+		});
 		gbc.gridy = 2;
 		add(bCheck,gbc);
 		
@@ -67,6 +89,30 @@ public class GUI extends JFrame{
 		pCheck.setVisible(false);
 		add(pCheck, gbc);
 		
+		validate();
+		repaint();
+	}
+	
+	private void switchToBackup() {
+		pBackup.setVisible(true);
+		pSort.setVisible(false);
+		pCheck.setVisible(false);
+		validate();
+		repaint();
+	}
+	
+	private void switchToSort() {
+		pBackup.setVisible(false);
+		pSort.setVisible(true);
+		pCheck.setVisible(false);
+		validate();
+		repaint();
+	}
+	
+	private void switchToCheck() {
+		pBackup.setVisible(false);
+		pSort.setVisible(false);
+		pCheck.setVisible(true);
 		validate();
 		repaint();
 	}
