@@ -23,7 +23,7 @@ public class GUI extends JFrame{
 		setLayout(new GridBagLayout());
 		setSize(500, 500);
 		setLocationRelativeTo(null);
-		setTitle("SchereSteinPapier");
+		setTitle("StorageManager");
 		setResizable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -82,7 +82,7 @@ public class GUI extends JFrame{
 		pBackup.setVisible(false);
 		add(pBackup, gbc);
 		
-		pSort = new panels.SortPanel();
+		pSort = new panels.sort.SortPanel();
 		add(pSort, gbc);
 		
 		pCheck = new panels.CeckPanel();

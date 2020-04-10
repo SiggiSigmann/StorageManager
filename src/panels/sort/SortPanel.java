@@ -1,4 +1,4 @@
-package panels;
+package panels.sort;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -6,24 +6,20 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
-import javax.swing.JTree;
 import javax.swing.SwingConstants;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+
 
 public class SortPanel extends JPanel {
 
-	private GridBagConstraints gbc, gbcRight, gbcLeft;
-	private JPanel pLeft, pRight;
+	private GridBagConstraints gbc;
+	private JPanel pFpLeft, pFpRight;
 	private JLabel lHead;
-	private JTree tSource, tDest;
-	private JTextField tfSource, tfDest, tfFilter;
+	private JTextField tfFilter;
 	private JSplitPane spSplit;
 	private JButton bSort;
 
@@ -40,41 +36,13 @@ public class SortPanel extends JPanel {
 		lHead.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lHead, gbc);
 
-		pLeft = new JPanel();
-		pLeft.setLayout(new GridBagLayout());
-		gbcLeft = new GridBagConstraints();
-		gbcLeft.fill = GridBagConstraints.BOTH;
-		gbcLeft.weightx = 1;
+		pFpLeft = new FilePanel();
+		pFpRight = new FilePanel();
 
-		tfSource = new JTextField();
-		pLeft.add(tfSource, gbcLeft);
-
-		gbcLeft.gridy = 1;
-		gbcLeft.weighty = 1;
-		
-		DefaultMutableTreeNode style=new DefaultMutableTreeNode("...");  
-		
-		tSource = new JTree(style);
-		pLeft.add(tSource, gbcLeft);
-
-		pRight = new JPanel();
-		pRight.setLayout(new GridBagLayout());
-		gbcRight = new GridBagConstraints();
-		gbcRight.fill = GridBagConstraints.BOTH;
-		gbcRight.weightx = 1;
-		
-		tfDest = new JTextField();
-		pRight.add(tfDest, gbcRight);
-
-		gbcRight.gridy = 1;
-		gbcRight.weighty = 1;
-
-		tDest = new JTree(style);
-		pRight.add(tDest, gbcRight);
 		
 		spSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		spSplit.setLeftComponent(pLeft);
-		spSplit.setRightComponent(pRight);
+		spSplit.setLeftComponent(pFpLeft);
+		spSplit.setRightComponent(pFpRight);
 		spSplit.setDividerLocation(0.5); //no effect Todo: fix
 		spSplit.setOneTouchExpandable(true);
 		
